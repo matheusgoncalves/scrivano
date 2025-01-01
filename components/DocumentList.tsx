@@ -1,5 +1,5 @@
 import Model from './Model';
-import { models } from '../../data/models';
+import { models } from '../data/models';
 
 export default function DocumentList() {
   return (
