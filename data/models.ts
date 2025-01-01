@@ -1,6 +1,6 @@
 export const models = [
-    { id: 1, name: 'ITBI (Pedro Osório)', src: '/images/lorem-ipsum.jpg', alt: 'itbi de pedro osorio', href: '/itbi-pedro-osorio' },
-    { id: 2, name: 'Declaração de Comprador', src: '/images/lorem-ipsum.jpg', alt: 'declaração de comprador', href: '/declaracao-comprador' },
-    { id: 3, name: 'Declaração de Vendedor', src: '/images/lorem-ipsum.jpg', alt: 'declaração de vendedor', href: '/declaracao-vendedor' },
+    { id: 1, name: 'ITBI (Pedro Osório)', src: '/images/lorem-ipsum.jpg', alt: 'ITBI de Pedro Osório', href: '/itbi-pedro-osorio' },
+    { id: 2, name: 'Declaração do(a) comprador(a)', src: '/images/lorem-ipsum.jpg', alt: 'Declaração do(a) comprador(a)', href: '/declaracao-comprador' },
+    { id: 3, name: 'Declaração do(a) vendedor(a)', src: '/images/lorem-ipsum.jpg', alt: 'Declaração do(a) vendedor(a)', href: '/declaracao-vendedor' },
   ];
   
