@@ -21,9 +21,9 @@ interface FormData {
 }
 
 const formatExpeditionDate = (dateString: string) => {
-  // Adiciona o fuso horário UTC para evitar ajustes automáticos
+  // Adicionando o fuso horário UTC para evitar ajustes automáticos
   const date = new Date(dateString + 'T00:00:00Z');
-  // Ajusta para considerar o fuso local na formatação
+  // Ajustando para considerar o fuso local na formatação
   const day = date.getUTCDate();
   const month = date.getUTCMonth() + 1;
   const year = date.getUTCFullYear();
@@ -56,7 +56,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
   const signatureDate = formData.signature_month ? 
     formatSignatureDate(formData.signature_month) : '';
 
-  // Aumentamos o tamanho base para melhor qualidade
+  // Aumentando o tamanho base para melhor qualidade
   tempDiv.innerHTML = `
     <div id="pdf-content" style="width: 420mm; padding: 60mm; font-family: Times New Roman; font-size: 24pt; line-height: 1.5;">
       <h1 style="text-align: center; font-size: 24pt; font-style: italic; font-weight: bold; text-decoration: underline; margin-bottom: 40px;">
@@ -90,7 +90,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
   try {
     // Configurações otimizadas do html2canvas
     const canvas = await html2canvas(tempDiv.firstElementChild as HTMLElement, {
-      scale: 4, // Aumentamos a escala para melhor qualidade
+      scale: 4, // Aumentando a escala para melhor qualidade
       useCORS: true,
       logging: false,
       backgroundColor: "#ffffff",
@@ -98,7 +98,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
       windowWidth: 2480, // Aproximadamente A4 em 300 DPI
       windowHeight: 3508,
       onclone: (clonedDoc) => {
-        // Garante que as fontes sejam carregadas no clone
+        // Garantindo que as fontes sejam carregadas no clone
         const style = clonedDoc.createElement('style');
         style.textContent = `
           @font-face {
@@ -137,7 +137,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
     const x = (pdfWidth - imgWidth) / 2;
     const y = 0;
 
-    // Adiciona a imagem com qualidade melhorada
+    // Adicionando a imagem com qualidade melhorada
     pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight, undefined, 'FAST');
     pdf.save('declaracao-comprador.pdf');
 

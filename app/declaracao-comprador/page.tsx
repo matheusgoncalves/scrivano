@@ -311,7 +311,7 @@ export default function BuyerDeclaration() {
                     <div className="flex justify-end items-end py-16">
                       {/* Cidade */}
                       <div className="flex items-end">
-                        <input type="text" id="none" name="none" value={cityValue} disabled className="w-32 px-2 border border-neutral-500 rounded-2xl truncate text-center" />
+                        <input type="text" id="none" name="none" value={cityValue} placeholder="Preenchimento automático" disabled className="w-32 px-2 border border-neutral-500 rounded-2xl truncate text-center" />
 
                         <p>, (</p>
                       </div>
@@ -369,7 +369,7 @@ export default function BuyerDeclaration() {
                     <div className="flex flex-col gap-2 items-center">
                       <p className="w-80 border-b border-black"></p>
 
-                      <input type="text" id="none" name="none" value={nameValue} disabled className="uppercase w-72 px-2 border border-neutral-500 rounded-2xl truncate text-center" />
+                      <input type="text" id="none" name="none" value={nameValue} placeholder="Preenchimento automático" disabled className="uppercase w-72 px-2 border border-neutral-500 rounded-2xl truncate text-center" />
                     </div>
                   </div>
 
