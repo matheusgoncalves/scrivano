@@ -43,7 +43,7 @@ const formatSignatureDate = (dateString: string) => {
   return `${meses[date.getUTCMonth()]} de ${date.getUTCFullYear()}`;
 };
 
-const generateCleanPDF = async (formData: FormData) => {
+const generateBuyerDeclarationPDF = async (formData: FormData) => {
   const tempDiv = document.createElement('div');
   tempDiv.style.position = 'absolute';
   tempDiv.style.left = '-9999px';
