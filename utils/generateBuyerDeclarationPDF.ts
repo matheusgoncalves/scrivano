@@ -68,7 +68,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
         inscrito(a) no CPF sob nº ${formData.cpf}, portador(a) da CDI nº ${formData.identity_register} - 
         ${formData.issuing_authority}, expedida em ${expeditionDate}, residente e domiciliado(a) na 
         ${formData.street_name}, ${formData.house_number}, bairro ${formData.neighborhood}, cidade de 
-        ${formData.city}, <strong>declara</strong>, sob as penas da Lei, que não está obrigado(a) a apresentar a certidão 
+        ${formData.city}, <span style="margin-right: 9px;"><strong>declara</span></strong>, sob as penas da Lei, que não está obrigado(a) a apresentar a certidão 
         Negativa da Receita Federal - prova de Inexistência de Débito e C.N.D. do INSS, por não ser 
         empregador(a), não possuir firma em seu nome e também não ser exportador(a) de e nem vender 
         produtos rurais diretamente no varejo, nos termos do que estabelece o decreto nº 3048 de 06 de 
@@ -139,7 +139,7 @@ const generateBuyerDeclarationPDF = async (formData: FormData) => {
 
     // Adicionando a imagem com qualidade melhorada
     pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight, undefined, 'FAST');
-    pdf.save('declaracao-comprador.pdf');
+    pdf.save(`declaracao-comprador-${formData.name.split(' ')[0].toLowerCase()}.pdf`);
 
   } catch (error) {
     console.error('Erro ao gerar PDF:', error);
