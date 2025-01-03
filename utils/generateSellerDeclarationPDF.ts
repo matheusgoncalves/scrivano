@@ -13,6 +13,7 @@ interface FormData {
   expedition_date: string;
   street_name: string;
   house_number: string;
+  neighborhood: string;
   city: string;
   uf: string;
   signature_day: string;
@@ -66,19 +67,13 @@ const generateSellerDeclarationPDF = async (formData: FormData) => {
         ${formData.name}, ${formData.nationality}, ${formData.marital_status}, ${formData.profession}, 
         inscrito(a) no CPF sob nº ${formData.cpf}, portador(a) da CDI nº ${formData.identity_register} - 
         ${formData.issuing_authority}, expedida em ${expeditionDate}, residente e domiciliado(a) na 
-        ${formData.street_name}, ${formData.house_number}, cidade de 
-        ${formData.city}, <span style="margin-right: 9px;"><strong>declara</span></strong>, sob as penas da Lei, que o imóvel que está adquirindo, casa residencial objeto da matrícula é sua primeira aquisição imobiliária para fins residenciais. Declaração com base no art. 12-H da Consolidação Normativa Notarial e Registral da Corregedoria-Geral da Justiça do Estado do Rio Grande do Sul, que diz:
+        ${formData.street_name}, ${formData.house_number}, bairro ${formData.neighborhood}, cidade de 
+        ${formData.city}, <span style="margin-right: 9px;"><strong>declara</span></strong>, sob as penas da Lei, que não está obrigado(a) a apresentar a certidão 
+        Negativa da Receita Federal - prova de Inexistência de Débito e C.N.D. do INSS, por não ser 
+        empregador(a), não possuir firma em seu nome e também não ser exportador(a) de e nem vender 
+        produtos rurais diretamente no varejo, nos termos do que estabelece o decreto nº 3048 de 06 de 
+        Maio de 1999, decreto que aprova o Regulamento de Organização e do Custeio da Seguridade Social.
       </p>
-
-      <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
-        <p style="text-align: justify; text-indent: 48px; margin: 0;">
-          &quotART. 12-H – OS EMOLUMENTOS DEVIDOS PELOS ATOS RELACIONADOS COM A PRIMEIRA AQUISIÇÃO IMOBILIÁRIA PARA FINS RESIDENCIAIS FINANCIADA PELO SISTEMA FINANCEIRO DE HABITAÇÃO, DEVEM TER REDUÇÃO DE 50%, DE ACORDO COM A DISCIPLINA LEGAL DA MATÉRIA (ART. 290 DA LEI 6015/73).
-        </p>
-
-        <p style="text-align: justify; margin: 0;">
-          §1º - O DESCONTO DO CAPUT APLICA-SE, INCLUSIVE, ÀS AVERBAÇÕES DAS EDIFICAÇÕES DECORRENTES DO FINANCIAMENTO E AOS CANCELAMENTOS DAS RESPECTIVAS GARANTIAS FIDUCIÁRIAS OU HIPOTECÁRIAS.&quot
-        </p>
-      </div>
 
       <div style="margin-top: 120px; text-align: right;">
         ${formData.city} (${formData.uf}), ${formData.signature_day} de ${signatureDate}.

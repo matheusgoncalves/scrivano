@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense } from 'react';
 import { useForm } from 'react-hook-form';
-import Loading from './loading';
+import Loading from '../declaracao-comprador/loading';
 import { HiOutlineInformationCircle, HiOutlineExclamationTriangle } from 'react-icons/hi2';
 import generateSellerDeclarationPDF from '../../utils/generateSellerDeclarationPDF';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ type FormInputs = {
   expedition_date: string;
   street_name: string;
   house_number: string;
+  neighborhood: string;
   city: string;
   uf: string;
   signature_day: string;
@@ -41,6 +42,7 @@ export default function SellerDeclaration() {
       expedition_date: '',
       street_name: '',
       house_number: '',
+      neighborhood: '',
       city: '',
       uf: '',
       signature_day: '1',
@@ -98,6 +100,7 @@ export default function SellerDeclaration() {
                             })}
                             className={`w-40 px-2 border rounded-2xl truncate ${errors.name ? 'border-red-500' : 'border-neutral-500'}`}
                           />
+                          {/* {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>} */}
                         </div>
 
                         <p className="pr-1">,</p>
@@ -164,6 +167,7 @@ export default function SellerDeclaration() {
                             placeholder="XXX.XXX.XXX-XX"
                             className={`w-36 px-2 border rounded-2xl truncate ${errors.cpf ? 'border-red-500' : 'border-neutral-500'}`}
                           />
+                          {/* {errors.cpf && <span className="text-red-500 text-xs">{errors.cpf.message}</span>} */}
                         </div>
 
                         <p className="pr-1">,</p>
@@ -261,6 +265,24 @@ export default function SellerDeclaration() {
                       </div>
 
                       {/* Texto estático */}
+                      <p className="pr-1">bairro</p>
+
+                      {/* Bairro */}
+                      <div className="flex items-end">
+                        <div className="flex flex-col">
+                          <label htmlFor="neighborhood" className="text-sm text-neutral-500">Bairro</label>
+                          <input
+                            {...register("neighborhood", { 
+                              required: "Bairro é obrigatório",
+                            })}
+                            className={`w-32 px-2 border rounded-2xl truncate ${errors.neighborhood ? 'border-red-500' : 'border-neutral-500'}`}
+                          />
+                        </div>
+
+                        <p className="pr-1">,</p>
+                      </div>
+
+                      {/* Texto estático */}
                       <p className="pr-1">cidade de</p>
 
                       {/* Cidade */}
@@ -271,23 +293,17 @@ export default function SellerDeclaration() {
                             {...register("city", { 
                               required: "Cidade é obrigatória",
                             })}
-                            className={`w-[7.5rem] px-2 border rounded-2xl truncate ${errors.city ? 'border-red-500' : 'border-neutral-500'}`}
+                            className={`w-32 px-2 border rounded-2xl truncate ${errors.city ? 'border-red-500' : 'border-neutral-500'}`}
                           />
+                          {/* {errors.city && <span className="text-red-500 text-xs">{errors.city.message}</span>} */}
                         </div>
 
                         <p className="pr-1">,</p>
-                        <p><b>declara</b>, sob as penas da Lei, que o imóvel que está adquirindo,</p> 
+                        <p><b>declara</b>, sob as penas da Lei, que não</p> 
                       </div>
 
-                      {/* Texto estático */}
                       <div className="flex items-end text-justify">
-                        <p className="pr-1">casa residencial objeto da matrícula é sua primeira aquisição imobiliária para fins residenciais. Declaração com base no art. 12-H da Consolidação Normativa Notarial e Registral da Corregedoria-Geral da Justiça do Estado do Rio Grande do Sul, que diz:</p>
-                      </div>
-
-                      {/* Texto estático */}
-                      <div className="flex flex-col gap-5 pt-5">
-                        <p className="text-justify indent-12">&quot;ART. 12-H – OS EMOLUMENTOS DEVIDOS PELOS ATOS RELACIONADOS COM A PRIMEIRA AQUISIÇÃO IMOBILIÁRIA PARA FINS RESIDENCIAIS FINANCIADA PELO SISTEMA FINANCEIRO DE HABITAÇÃO, DEVEM TER REDUÇÃO DE 50%, DE ACORDO COM A DISCIPLINA LEGAL DA MATÉRIA (ART. 290 DA LEI 6015/73).</p>
-                        <p className="text-justify">§1º - O DESCONTO DO CAPUT APLICA-SE, INCLUSIVE, ÀS AVERBAÇÕES DAS EDIFICAÇÕES DECORRENTES DO FINANCIAMENTO E AOS CANCELAMENTOS DAS RESPECTIVAS GARANTIAS FIDUCIÁRIAS OU HIPOTECÁRIAS.&quot;</p>
+                        <p className="pr-1">está obrigado(a) a apresentar a certidão Negativa da Receita Federal - prova de Inexistência de Débito e C.N.D. do INSS, por não ser empregador(a), não possuir firma em seu nome e também não ser exportador(a) de e nem vender produtos rurais diretamente no varejo, nos termos do que estabelece o decreto nº 3048 de 06 de Maio de 1999, decreto que aprova o Regulamento de Organização e do Custeio da Seguridade Social.</p>
                       </div>
                     </div>
 
@@ -369,6 +385,7 @@ export default function SellerDeclaration() {
                     {errors.expedition_date && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.expedition_date.message}</span>}
                     {errors.street_name && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.street_name.message}</span>}
                     {errors.house_number && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.house_number.message}</span>}
+                    {errors.neighborhood && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.neighborhood.message}</span>}
                     {errors.city && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.city.message}</span>}
                     {errors.uf && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.uf.message}</span>}
                     {errors.signature_day && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.signature_day.message}</span>}
