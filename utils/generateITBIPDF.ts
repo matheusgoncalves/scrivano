@@ -6,6 +6,7 @@ interface FormData {
   street_name: string;
   house_number: string;
   neighborhood: string;
+  property_register_city: string;
   front: string;
   funds: string;
   right_side: string;
@@ -50,6 +51,14 @@ const generatePedroOsorioITBIPDF = async (formData: FormData) => {
     const formatNumber = (value: string) => {
       return value.replace('.', ',');
     };
+
+    // Exibindo o nome da cidade
+    doc.setFont('helvetica', 'bold');
+    const propertyRegisterCityFront = formData.property_register_city === 'pedro_osorio' 
+    ? 'PEDRO OSÓRIO' 
+    : 'Cerrito';
+    doc.text(propertyRegisterCityFront, 166, 48.5);
+    doc.setFont('times', 'normal');
 
     // Exibindo as dimensões do terreno
     doc.text(formatNumber(formData.front), 81, 60);
@@ -96,6 +105,14 @@ const generatePedroOsorioITBIPDF = async (formData: FormData) => {
     doc.addPage();
     doc.addImage('/images/pedro_osorio_verso.png', 'PNG', 4, 0, 203, 145, undefined, 'FAST');
 
+    // Exibindo o nome da cidade
+    doc.setFont('helvetica', 'bold');
+    const propertyRegisterCityVerse = formData.property_register_city === 'pedro_osorio' 
+    ? 'Pedro Osório' 
+    : 'Cerrito';
+    doc.text(propertyRegisterCityVerse, 42.5, 28.5);
+    doc.setFont('times', 'normal');
+
     // Exibindo dados do contribuinte
     doc.text(formData.contributor_name, 50, 46);
     doc.text(formData.contributor_cpf, 95, 46);
@@ -103,9 +120,8 @@ const generatePedroOsorioITBIPDF = async (formData: FormData) => {
 
     doc.text(`R$ ${formData.own_resources}`, 86, 84.5);
     doc.text(`R$ ${formData.financing}`, 86, 90.5);
-    doc.text(`R$ ${formData.total_value}`, 86, 96.5);    
+    doc.text(`R$ ${formData.total_value}`, 86, 96.5);
 
-    doc.save('ITBI_Pedro_Osorio.pdf');
     doc.save('ITBI_Pedro_Osorio.pdf');
 
   } catch (error) {
