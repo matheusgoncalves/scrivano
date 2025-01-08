@@ -12,6 +12,7 @@ type FormInputs = {
   street_name: string;
   house_number: string;
   neighborhood: string;
+  property_register_city: string;
   front: string;
   funds: string;
   right_side: string;
@@ -43,6 +44,7 @@ export default function ITBIPedroOsorio() {
       street_name: '',
       house_number: '',
       neighborhood: '',
+      property_register_city: '',
       front: '',
       funds: '',
       right_side: '',
@@ -65,6 +67,12 @@ export default function ITBIPedroOsorio() {
   const streetNameValue = watch('street_name');
   const houseNumberValue = watch('house_number');
   const neighborhoodValue = watch('neighborhood');
+  
+  // Observando o valor de property_register_city
+  const propertyRegisterCityValue = watch('property_register_city');
+  const propertyRegisterCity = propertyRegisterCityValue === 'pedro_osorio' 
+  ? 'Pedro Osório' 
+  : 'Cerrito';
 
   // Observando os valores
   const financing = watch("financing");
@@ -138,7 +146,7 @@ export default function ITBIPedroOsorio() {
             <Suspense fallback={<Loading />}>
               <form id="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="p-4 border border-neutral-300 rounded-2xl">
-                  <div className="relative w-[1100px] h-[640px] flex flex-col" style={{ backgroundImage: 'url(images/pedro_osorio_frente.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                  <div className="relative w-[1100px] h-[640px] flex flex-col" style={{ backgroundImage: 'url(images/itbi_frente.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     {/* Frente da ITBI */}
                     <div className="flex flex-col">
                       {/* Transmitente */}
@@ -218,6 +226,24 @@ export default function ITBIPedroOsorio() {
                               />
                             </div>
                           </div>
+                        </div>
+                      </div>
+
+                      {/* Cidade do Registro de Imóveis */}
+                      <div className="absolute right-[268px] top-[180px]">
+                        <div className="absolute flex flex-col">
+                          <label htmlFor="property_register_city" className="sr-only">Cidade do Registro de Imóveis</label>
+                          <select 
+                            id="property_register_city"
+                            {...register("property_register_city", { 
+                              required: "Cidade do Registro de Imóveis é obrigatória",
+                            })}
+                            className={`w-52 px-2 border rounded-2xl truncate ${errors.property_register_city ? 'border-red-500' : 'border-neutral-500'}`}
+                          >
+                            <option value="">Selecione uma opção</option>
+                            <option value="pedro_osorio">PEDRO OSÓRIO</option>
+                            <option value="cerrito">Cerrito</option>
+                          </select>
                         </div>
                       </div>
 
@@ -543,9 +569,9 @@ export default function ITBIPedroOsorio() {
                                   <input 
                                     type="radio" 
                                     id="normal_wood" 
-                                    value="normal_wood"
+                                    value="normal_wood" 
                                     {...register("construction_material", { 
-                                      required: "Tipo da construção é obrigatório",
+                                      required: "Tipo da construção é obrigatório", 
                                     })}
                                     className="appearance-none w-3 h-3 border border-neutral-500 cursor-pointer checked:mt-[2px] checked:w-2 checked:h-2 checked:ring-1 checked:ring-blue-500 checked:ring-offset-1 checked:border-transparent checked:bg-blue-500" 
                                   />
@@ -592,7 +618,7 @@ export default function ITBIPedroOsorio() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Erros */}
                 <div className="flex flex-col gap-1 my-4">
                   {errors.name && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.name.message}</span>}
@@ -600,6 +626,7 @@ export default function ITBIPedroOsorio() {
                   {errors.street_name && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.street_name.message}</span>}
                   {errors.house_number && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.house_number.message}</span>}
                   {errors.neighborhood && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.neighborhood.message}</span>}
+                  {errors.property_register_city && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.property_register_city.message}</span>}
                   {errors.front && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.front.message}</span>}
                   {errors.funds && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.funds.message}</span>}
                   {errors.right_side && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.right_side.message}</span>}
@@ -611,11 +638,18 @@ export default function ITBIPedroOsorio() {
                   {errors.construction_year && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.construction_year.message}</span>}
                   {errors.construction_material && <span className="flex gap-1 items-center text-red-500 text-md"><HiOutlineExclamationTriangle className="text-2xl text-red-500"></HiOutlineExclamationTriangle> {errors.construction_material.message}</span>}
                 </div>
-                
+
                 <div className="p-4 border border-neutral-300 rounded-2xl">
-                  <div className="relative w-[1100px] h-[640px] flex flex-col" style={{ backgroundImage: 'url(images/pedro_osorio_verso.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                  <div className="relative w-[1100px] h-[640px] flex flex-col" style={{ backgroundImage: 'url(images/itbi_verso.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     {/* Verso da ITBI */}
                     <div className="flex flex-col">
+                      {/* Cidade do Registro de Imóveis */}
+                      <div className="absolute left-[210px] top-[78px]">
+                        <div className="absolute font-extrabold text-lg flex whitespace-nowrap">
+                          {propertyRegisterCity}
+                        </div>
+                      </div>
+
                       {/* Nome do contribuinte */}
                       <div className="absolute left-56 top-[166px]">
                         <div className="flex flex-col">
