@@ -24,7 +24,7 @@ interface FormData {
   total_value: string;
 }
 
-const generatePedroOsorioITBIPDF = async (formData: FormData) => {
+const generateITBIPDF = async (formData: FormData) => {
   try {
     // Criando novo documento PDF
     const doc = new jsPDF({
@@ -130,4 +130,4 @@ const generatePedroOsorioITBIPDF = async (formData: FormData) => {
   }
 };
 
-export default generatePedroOsorioITBIPDF;
+export default generateITBIPDF;

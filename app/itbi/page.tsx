@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import Loading from './loading';
 import { HiOutlineInformationCircle, HiOutlineExclamationTriangle } from 'react-icons/hi2';
-import generatePedroOsorioITBIPDF from '../../utils/generatePedroOsorioITBIPDF';
+import generateITBIPDF from '../../utils/generateITBIPDF';
 import Link from 'next/link';
 
 type FormInputs = {
@@ -30,7 +30,7 @@ type FormInputs = {
   total_value: string;
 };
 
-export default function ITBIPedroOsorio() {
+export default function ITBI() {
   const { 
     register, 
     handleSubmit,
@@ -70,9 +70,10 @@ export default function ITBIPedroOsorio() {
   
   // Observando o valor de property_register_city
   const propertyRegisterCityValue = watch('property_register_city');
-  const propertyRegisterCity = propertyRegisterCityValue === 'pedro_osorio' 
-  ? 'Pedro Osório' 
-  : 'Cerrito';
+  const propertyRegisterCity = 
+    propertyRegisterCityValue === 'pedro_osorio' ? 'Pedro Osório' :
+    propertyRegisterCityValue === 'cerrito' ? 'Cerrito' :
+  '';
 
   // Observando os valores
   const financing = watch("financing");
@@ -112,7 +113,7 @@ export default function ITBIPedroOsorio() {
   }, [financing, ownResources, setValue]);    
 
   const onSubmit = (data: FormInputs) => {
-    generatePedroOsorioITBIPDF(data);
+    generateITBIPDF(data);
   };
 
   return (
