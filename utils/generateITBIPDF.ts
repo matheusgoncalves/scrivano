@@ -38,7 +38,7 @@ const generateITBIPDF = async (formData: FormData) => {
     doc.setFontSize(11);
 
     // Adicionando imagem de fundo (frente)
-    doc.addImage('/images/pedro_osorio_frente.png', 'PNG', 4, 0, 203, 145, undefined, 'FAST');
+    doc.addImage('/images/itbi_frente.jpg', 'JPG', 4, 0, 203, 145, undefined, 'FAST');
 
     // Exibindo informações do transmitente
     doc.text(formData.name, 70, 21);
@@ -103,7 +103,7 @@ const generateITBIPDF = async (formData: FormData) => {
 
     // Adicionando verso
     doc.addPage();
-    doc.addImage('/images/pedro_osorio_verso.png', 'PNG', 4, 0, 203, 145, undefined, 'FAST');
+    doc.addImage('/images/itbi_verso.jpg', 'JPG', 4, 0, 203, 145, undefined, 'FAST');
 
     // Exibindo o nome da cidade
     doc.setFont('helvetica', 'bold');
@@ -122,7 +122,7 @@ const generateITBIPDF = async (formData: FormData) => {
     doc.text(`R$ ${formData.financing}`, 86, 90.5);
     doc.text(`R$ ${formData.total_value}`, 86, 96.5);
 
-    doc.save('ITBI_Pedro_Osorio.pdf');
+    doc.save(`itbi_${formData.property_register_city}.pdf`);
 
   } catch (error) {
     console.error('Erro ao gerar PDF:', error);
